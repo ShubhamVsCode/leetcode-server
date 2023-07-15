@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { isObjectId } from "../utils/utilFunctions.js";
 
 const ProblemSchema = new mongoose.Schema({
   title: {
@@ -41,6 +40,9 @@ const ProblemSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+      explanation: {
+        type: String,
+      },
     },
   ],
   solutions: [
@@ -69,6 +71,23 @@ const ProblemSchema = new mongoose.Schema({
   constraints: [
     {
       constraint: String,
+    },
+  ],
+  testCases: [
+    {
+      input: {
+        type: String,
+        required: true,
+      },
+      output: {
+        type: String,
+        required: true,
+      },
+      visibility: {
+        type: String,
+        enum: ["public", "private"],
+        default: "public",
+      },
     },
   ],
 });
